@@ -27,5 +27,5 @@ jobs:
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: |
-        heroku git:remote -a ${{ secrets.HEROKU_APP_NAME }}
+        heroku git:remote -a base64-encoder
         git push heroku main --force
