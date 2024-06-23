@@ -23,9 +23,17 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Deploy to Heroku
+    - name: Install Heroku CLI
+      run: curl https://cli-assets.heroku.com/install.sh | sh
+
+    - name: Authenticate Heroku CLI
+      run: echo $HEROKU_API_KEY | heroku auth:token
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
+    - name: Set Heroku remote
       run: |
         heroku git:remote -a base64-encoder
-        git push heroku main --force
+
+    - name: Deploy to Heroku
+      run: git push heroku main --force
