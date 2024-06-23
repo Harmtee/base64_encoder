@@ -30,3 +30,8 @@ class DecodeView(APIView):
             except ValueError as e:
                 return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class HomeView(APIView):
+    def get(self, request):
+        return Response({"message": "Welcome to the Base64 Encoder API. Try api/encode or api/decode endpoint to encode or decode payload"}, status=status.HTTP_200_OK)
